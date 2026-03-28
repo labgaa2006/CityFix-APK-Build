@@ -27,7 +27,15 @@ jobs:
 
       # Regenerate the Android project files since they are missing/incomplete in the zip
       - name: Recreate platform folders
-        run: flutter create .
+        run: flutter create --org Cityfix .
+
+      - name: Fix Application ID for Firebase
+        run: sed -i "s/applicationId \".*\"/applicationId \"Cityfix.app\"/g" android/app/build.gradle
+
+      - name: Add google-services.json
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo "$GOOGLE_SERVICES_JSON" > android/app/google-services.json
 
       - name: Install Dependencies
         run: flutter pub get
