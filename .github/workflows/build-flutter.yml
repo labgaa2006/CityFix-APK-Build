@@ -33,7 +33,12 @@ jobs:
           cp android_backup/app/src/main/AndroidManifest.xml android/app/src/main/AndroidManifest.xml || true
 
       - name: Fix Application ID for Firebase
-        run: sed -i "s/applicationId \".*\"/applicationId \"Cityfix.app\"/g" android/app/build.gradle
+        run: |
+          if [ -f "android/app/build.gradle.kts" ]; then
+            sed -i "s/applicationId = \".*\"/applicationId = \"Cityfix.app\"/g" android/app/build.gradle.kts
+          elif [ -f "android/app/build.gradle" ]; then
+            sed -i "s/applicationId \".*\"/applicationId \"Cityfix.app\"/g" android/app/build.gradle
+          fi
 
       - name: Add google-services.json
         env:
