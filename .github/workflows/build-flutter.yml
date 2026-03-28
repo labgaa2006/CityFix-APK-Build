@@ -28,9 +28,9 @@ jobs:
       # Regenerate the Android project files without losing the custom AndroidManifest.xml
       - name: Recreate platform folders safely
         run: |
-          mv android android_backup
-          flutter create --org Cityfix .
-          cp android_backup/app/src/main/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          mv android android_backup || true
+          flutter create --platforms=android --org Cityfix .
+          cp android_backup/app/src/main/AndroidManifest.xml android/app/src/main/AndroidManifest.xml || true
 
       - name: Fix Application ID for Firebase
         run: sed -i "s/applicationId \".*\"/applicationId \"Cityfix.app\"/g" android/app/build.gradle
