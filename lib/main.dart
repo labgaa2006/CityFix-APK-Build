@@ -37,7 +37,7 @@ class CityFixApp extends StatelessWidget {
           seedColor: const Color(0xFF1650E8),
           brightness: Brightness.light,
         ),
-        fontFamily: 'Cairo',
+        
         useMaterial3: true,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
@@ -50,7 +50,7 @@ class CityFixApp extends StatelessWidget {
           seedColor: const Color(0xFF4D80FF),
           brightness: Brightness.dark,
         ),
-        fontFamily: 'Cairo',
+        
         useMaterial3: true,
       ),
       home: const HomeScreen(),
